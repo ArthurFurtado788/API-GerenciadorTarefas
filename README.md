@@ -110,7 +110,7 @@ Este projeto utiliza **MySQL** como banco de dados principal para persistência 
    );
    ```
 
-## 🧪 Testes
+## Testes
 
 ### Backend Tests
 ```bash
