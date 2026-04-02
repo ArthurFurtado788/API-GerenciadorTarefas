@@ -1,0 +1,45 @@
+# Arquivos do sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Arquivos de IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Diretórios de build
+target/
+dist/
+build/
+node_modules/
+
+# Arquivos de configuração com credenciais
+.env
+.env.local
+.env.production
+.env.development
+
+# Arquivos do Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Arquivos do Spring Boot
+*.original
+
+# Arquivos de backup
+*.bak
+*.backup
