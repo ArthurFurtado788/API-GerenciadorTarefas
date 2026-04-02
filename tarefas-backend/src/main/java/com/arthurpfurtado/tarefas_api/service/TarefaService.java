@@ -29,11 +29,14 @@ public class TarefaService {
     // se não encontrar, lança um erro em vez de retornar null
     public Tarefa buscarPorId(Long id) {
         return tarefaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com ID: " + id));
     }
 
     // recebe uma tarefa e salva no banco
     public Tarefa criar(Tarefa tarefa) {
+        if (tarefa.getTitulo() == null || tarefa.getTitulo().trim().isEmpty()) {
+            throw new IllegalArgumentException("Título da tarefa é obrigatório");
+        }
         return tarefaRepository.save(tarefa);
     }
 
@@ -41,14 +44,23 @@ public class TarefaService {
     // atualiza os campos um por um e salva novamente
     public Tarefa atualizar(Long id, Tarefa tarefaAtualizada) {
         Tarefa tarefa = buscarPorId(id);
-        tarefa.setTitulo(tarefaAtualizada.getTitulo());
-        tarefa.setDescricao(tarefaAtualizada.getDescricao());
-        tarefa.setConcluida(tarefaAtualizada.getConcluida());
+        if (tarefaAtualizada.getTitulo() != null && !tarefaAtualizada.getTitulo().trim().isEmpty()) {
+            tarefa.setTitulo(tarefaAtualizada.getTitulo());
+        }
+        if (tarefaAtualizada.getDescricao() != null) {
+            tarefa.setDescricao(tarefaAtualizada.getDescricao());
+        }
+        if (tarefaAtualizada.getConcluida() != null) {
+            tarefa.setConcluida(tarefaAtualizada.getConcluida());
+        }
         return tarefaRepository.save(tarefa);
     }
 
     // deleta uma tarefa pelo id
     public void deletar(Long id) {
+        if (!tarefaRepository.existsById(id)) {
+            throw new RuntimeException("Tarefa não encontrada com ID: " + id);
+        }
         tarefaRepository.deleteById(id);
     }
 }

@@ -2,6 +2,7 @@ package com.arthurpfurtado.tarefas_api.controller;
 
 import com.arthurpfurtado.tarefas_api.model.Tarefa;
 import com.arthurpfurtado.tarefas_api.service.TarefaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +29,13 @@ public class TarefaController {
     }
 
     @PostMapping
-    public ResponseEntity<Tarefa> criar(@RequestBody Tarefa tarefa) {
+    public ResponseEntity<Tarefa> criar(@Valid @RequestBody Tarefa tarefa) {
         // Uma boa prática: retornar status 201 (Created) ao criar recursos
         return ResponseEntity.status(201).body(tarefaService.criar(tarefa));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+    public ResponseEntity<Tarefa> atualizar(@PathVariable Long id, @Valid @RequestBody Tarefa tarefa) {
         return ResponseEntity.ok(tarefaService.atualizar(id, tarefa));
     }
 

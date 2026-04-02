@@ -1,3 +1,4 @@
+// Componente principal da aplicação React para gerenciamento de tarefas
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 

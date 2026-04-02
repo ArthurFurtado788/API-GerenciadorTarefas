@@ -89,7 +89,12 @@ Este projeto utiliza **MySQL** como banco de dados principal para persistência 
 - Arquivos de IDE (`.idea/`, `.vscode/`) são ignorados
 - Logs e arquivos temporários são ignorados
 - `node_modules/` e `target/` são ignorados
-
+### Melhorias Implementadas
+- ✅ **Validação de entrada** com Bean Validation
+- ✅ **Tratamento de erros padronizado** com GlobalExceptionHandler
+- ✅ **Testes unitários** para Service e Controller
+- ✅ **Docker** para containerização
+- ✅ **Documentação aprimorada** da API
 ### Desenvolvimento Seguro
 - Use senhas fortes para o banco de dados
 - Configure CORS apenas para domínios necessários
@@ -105,7 +110,44 @@ Este projeto utiliza **MySQL** como banco de dados principal para persistência 
    );
    ```
 
-**Nota**: O Spring Boot com JPA/Hibernate cria e atualiza automaticamente a estrutura da tabela baseada na entidade `Tarefa`.
+## 🧪 Testes
+
+### Backend Tests
+```bash
+cd tarefas-backend
+./mvnw test
+```
+
+**Testes implementados:**
+- ✅ Testes unitários para `TarefaService`
+- ✅ Testes de integração para `TarefaController`
+- ✅ Cobertura de cenários positivos e negativos
+- ✅ Validação de regras de negócio
+
+### Frontend Tests
+```bash
+cd tarefas-web
+npm test
+```
+
+## 🐳 Docker (Opcional)
+
+### Desenvolvimento com Docker
+```bash
+cd tarefas-backend
+docker-compose up --build
+```
+
+Isso iniciará:
+- **MySQL** na porta 3306
+- **Backend Spring Boot** na porta 8080
+
+### Produção
+```bash
+cd tarefas-backend
+docker build -t tarefas-api .
+docker run -p 8080:8080 tarefas-api
+```
 
 ## Instalação e Execução
 
